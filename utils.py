@@ -16,14 +16,9 @@ def process_tweet(tweet):
     """
     stemmer = PorterStemmer()
     stopwords_english = stopwords.words('english')
-    # remove stock market tickers like $GE
     tweet = re.sub(r'\$\w*', '', tweet)
-    # remove old style retweet text "RT"
     tweet = re.sub(r'^RT[\s]+', '', tweet)
-    # remove hyperlinks    
     tweet = re.sub(r'https?://[^\s\n\r]+', '', tweet)
-    # remove hashtags
-    # only removing the hash # sign from the word
     tweet = re.sub(r'#', '', tweet)
     # tokenize tweets
     tokenizer = TweetTokenizer(preserve_case=False, strip_handles=True,
